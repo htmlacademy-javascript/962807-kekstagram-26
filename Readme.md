@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Юрий Марченко](https://up.htmlacademy.ru/javascript/26/user/962807).
-* Наставник: `Неизвестно`.
+- Студент: [Юрий Марченко](https://up.htmlacademy.ru/javascript/26/user/962807).
+- Наставник: [Максим Прусаков](https://htmlacademy.ru/profile/hikikomori)..
 
 ---
 
