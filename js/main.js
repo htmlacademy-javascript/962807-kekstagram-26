@@ -69,7 +69,7 @@ function generateRandomContent(count) {
   const POST_ID = shuffleArray(getPositiveIntegerArray(count));
   const PHOTO_ID = shuffleArray(getPositiveIntegerArray(count));
   const COMMENTS_PER_POST = Array.from(
-    { length: count }, (commentsCount) => getRandomPositiveInteger(1, LIMIT_COMMENTS_COUNT)
+    { length: count }, () => getRandomPositiveInteger(1, LIMIT_COMMENTS_COUNT)
   );
   const COMMENTS_AMOUNT = COMMENTS_PER_POST.reduce((sum, item) => sum + item, 0);
   const COMMENTS_ID = shuffleArray(getPositiveIntegerArray(COMMENTS_AMOUNT));
@@ -79,7 +79,7 @@ function generateRandomContent(count) {
     this.url = `photos/${PHOTO_ID[id]}.jpg`;
     this.description = DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)];
     this.likes = getRandomPositiveInteger(15, 200);
-    this.comments = Array.from({ length: COMMENTS_PER_POST[id] }, (comment) => new Comment());
+    this.comments = Array.from({ length: COMMENTS_PER_POST[id] }, () => new Comment());
     // console.log(this)
   }
 
@@ -96,6 +96,8 @@ function generateRandomContent(count) {
   return CONTENT_ARRAY;
 }
 
-const CONTENT = generateRandomContent(5);
+getRandomPositiveInteger(1, 8);
+isProperCommentLength('comment', 3);
+generateRandomContent(5);
 
-// console.dir(CONTENT);
+// console.dir(generateRandomContent(5));
