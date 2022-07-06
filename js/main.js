@@ -65,25 +65,25 @@ const NAMES = [
 const LIMIT_COMMENTS_COUNT = 5;
 
 function generateRandomContent(count) {
-  const IdArray = getPositiveIntegerArray(count);
-  const PostId = shuffleArray(IdArray);
-  const PhotoId = shuffleArray(IdArray);
-  const CommentsPerPost = Array.from(
+  const idArray = getPositiveIntegerArray(count);
+  const postId = shuffleArray(idArray);
+  const photoId = shuffleArray(idArray);
+  const commentsPerPost = Array.from(
     { length: count }, () => getRandomPositiveInteger(1, LIMIT_COMMENTS_COUNT)
   );
-  const CommentsAmount = CommentsPerPost.reduce((sum, item) => sum + item, 0);
-  const CommentsId = shuffleArray(getPositiveIntegerArray(CommentsAmount));
+  const commentsAmount = commentsPerPost.reduce((sum, item) => sum + item, 0);
+  const commentsId = shuffleArray(getPositiveIntegerArray(commentsAmount));
 
   function ContentItem(id) {
-    this.id = PostId[id];
-    this.url = `photos/${PhotoId[id]}.jpg`;
+    this.id = postId[id];
+    this.url = `photos/${photoId[id]}.jpg`;
     this.description = DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)];
     this.likes = getRandomPositiveInteger(15, 200);
-    this.comments = Array.from({ length: CommentsPerPost[id] }, () => new Comment());
+    this.comments = Array.from({ length: commentsPerPost[id] }, () => new Comment());
   }
 
   function Comment() {
-    this.id = CommentsId.pop();
+    this.id = commentsId.pop();
     this.avatar = `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`;
     this.message = shuffleArray(MESSAGES).slice(0, getRandomPositiveInteger(1, 2)).join(' ');
     this.name = NAMES[getRandomPositiveInteger(0, NAMES.length - 1)];
