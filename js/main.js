@@ -65,9 +65,9 @@ const NAMES = [
 const LIMIT_COMMENTS_COUNT = 5;
 
 function generateRandomContent(count) {
-  const ContentArray = [];
-  const PostId = shuffleArray(getPositiveIntegerArray(count));
-  const PhotoId = shuffleArray(getPositiveIntegerArray(count));
+  const IdArray = getPositiveIntegerArray(count);
+  const PostId = shuffleArray(IdArray);
+  const PhotoId = shuffleArray(IdArray);
   const CommentsPerPost = Array.from(
     { length: count }, () => getRandomPositiveInteger(1, LIMIT_COMMENTS_COUNT)
   );
@@ -80,24 +80,18 @@ function generateRandomContent(count) {
     this.description = DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)];
     this.likes = getRandomPositiveInteger(15, 200);
     this.comments = Array.from({ length: CommentsPerPost[id] }, () => new Comment());
-    // console.log(this)
   }
 
   function Comment() {
     this.id = CommentsId.pop();
     this.avatar = `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`;
-    this.message = shuffleArray(MESSAGES.slice()).slice(0, getRandomPositiveInteger(1, 2)).join(' ');
+    this.message = shuffleArray(MESSAGES).slice(0, getRandomPositiveInteger(1, 2)).join(' ');
     this.name = NAMES[getRandomPositiveInteger(0, NAMES.length - 1)];
-    // console.log(this);
   }
-  for (let i = 0; i < count; i++) {
-    ContentArray.push(new ContentItem(i));
-  }
-  return ContentArray;
+
+  return Array.from({ length: count}, (_, index) => new ContentItem(++index));
 }
 
 getRandomPositiveInteger(1, 8);
 isProperCommentLength('comment', 3);
 generateRandomContent(5);
-
-// console.dir(generateRandomContent(5));
