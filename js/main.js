@@ -65,35 +65,35 @@ const NAMES = [
 const LIMIT_COMMENTS_COUNT = 5;
 
 function generateRandomContent(count) {
-  const CONTENT_ARRAY = [];
-  const POST_ID = shuffleArray(getPositiveIntegerArray(count));
-  const PHOTO_ID = shuffleArray(getPositiveIntegerArray(count));
-  const COMMENTS_PER_POST = Array.from(
+  const ContentArray = [];
+  const PostId = shuffleArray(getPositiveIntegerArray(count));
+  const PhotoId = shuffleArray(getPositiveIntegerArray(count));
+  const CommentsPerPost = Array.from(
     { length: count }, () => getRandomPositiveInteger(1, LIMIT_COMMENTS_COUNT)
   );
-  const COMMENTS_AMOUNT = COMMENTS_PER_POST.reduce((sum, item) => sum + item, 0);
-  const COMMENTS_ID = shuffleArray(getPositiveIntegerArray(COMMENTS_AMOUNT));
+  const CommentsAmount = CommentsPerPost.reduce((sum, item) => sum + item, 0);
+  const CommentsId = shuffleArray(getPositiveIntegerArray(CommentsAmount));
 
   function ContentItem(id) {
-    this.id = POST_ID[id];
-    this.url = `photos/${PHOTO_ID[id]}.jpg`;
+    this.id = PostId[id];
+    this.url = `photos/${PhotoId[id]}.jpg`;
     this.description = DESCRIPTIONS[getRandomPositiveInteger(0, DESCRIPTIONS.length - 1)];
     this.likes = getRandomPositiveInteger(15, 200);
-    this.comments = Array.from({ length: COMMENTS_PER_POST[id] }, () => new Comment());
+    this.comments = Array.from({ length: CommentsPerPost[id] }, () => new Comment());
     // console.log(this)
   }
 
   function Comment() {
-    this.id = COMMENTS_ID.pop();
+    this.id = CommentsId.pop();
     this.avatar = `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`;
     this.message = shuffleArray(MESSAGES.slice()).slice(0, getRandomPositiveInteger(1, 2)).join(' ');
     this.name = NAMES[getRandomPositiveInteger(0, NAMES.length - 1)];
     // console.log(this);
   }
   for (let i = 0; i < count; i++) {
-    CONTENT_ARRAY.push(new ContentItem(i));
+    ContentArray.push(new ContentItem(i));
   }
-  return CONTENT_ARRAY;
+  return ContentArray;
 }
 
 getRandomPositiveInteger(1, 8);
