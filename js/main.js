@@ -94,4 +94,4 @@ function generateRandomContent(count) {
 
 getRandomPositiveInteger(1, 8);
 isProperCommentLength('comment', 3);
-generateRandomContent(5);
+generateRandomContent(25);
