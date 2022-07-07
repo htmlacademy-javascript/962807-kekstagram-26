@@ -76,7 +76,7 @@ function generateRandomContent(count) {
     this.name = NAMES[getRandomPositiveInteger(0, NAMES.length - 1)];
   }
 
-  return Array.from({ length: count}, (_, index) => new ContentItem(++index));
+  return Array.from({ length: count}, (_, index) => new ContentItem(index++));
 }
 
 isProperCommentLength('comment', 3);
