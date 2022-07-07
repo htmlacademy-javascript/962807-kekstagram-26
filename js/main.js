@@ -1,2 +1,1 @@
-import { generateRandomContent } from './data.js';
-generateRandomContent(25);
+import './render-miniature.js';
