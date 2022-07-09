@@ -81,4 +81,6 @@ function generateRandomContent(count) {
 
 isProperCommentLength('comment', 3);
 
-export {generateRandomContent};
+const randomContent = generateRandomContent(25);
+
+export {randomContent};
