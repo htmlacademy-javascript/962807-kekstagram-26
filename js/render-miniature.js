@@ -1,23 +1,23 @@
-import { generateRandomContent } from './data.js';
+import { randomContent } from './data.js';
 
 const renderContent = (templateId, content) => {
-  const templateElement = document.querySelector(`#${templateId}`).content;
+  //Находим шаблон, создаём пустой фрагмент
+  const elementTemplate = document.querySelector(`#${templateId}`).content;
   const fragment = document.createDocumentFragment();
-  for (const item of content) {
-    const element = templateElement.cloneNode(true);
+
+  const renderContentElement = (item, id) => {
+    //Клонируем шаблон и заполняем основными данными
+    const element = elementTemplate.cloneNode(true);
+    element.querySelector('.picture').dataset.pictureId = id;
     element.querySelector('.picture__img').alt = item.description;
     element.querySelector('.picture__img').src = item.url;
     element.querySelector('.picture__likes').textContent = item.likes;
-    const commentTemplate = element.querySelector('.picture__comments');
-    commentTemplate.remove();
-    for (const comment of item.comments) {
-      const commentElement = commentTemplate.cloneNode(true);
-      commentElement.textContent = comment.message;
-      element.querySelector('.picture__info').prepend(commentElement);
-    }
-    fragment.prepend(element);
-  }
-  document.querySelector('.pictures').prepend(fragment);
+    element.querySelector('.picture__comments').textContent = item.comments.length;
+    fragment.append(element);
+  };
+
+  content.forEach(renderContentElement);
+  document.querySelector('.pictures__title').after(fragment);
 };
 
-renderContent('picture', generateRandomContent(25));
+renderContent('picture', randomContent);
