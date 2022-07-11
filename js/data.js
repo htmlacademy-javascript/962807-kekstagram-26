@@ -79,8 +79,9 @@ function generateRandomContent(count) {
   return Array.from({ length: count}, (_, index) => new ContentItem(index++));
 }
 
+
 isProperCommentLength('comment', 3);
 
-const randomContent = generateRandomContent(25);
+const randomContentData = generateRandomContent(25);
 
-export {randomContent};
+export {randomContentData};
