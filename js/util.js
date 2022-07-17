@@ -18,12 +18,16 @@ const shuffleArray = (array) => {
 
 const isEscapeKey = (event) => event.key === 'Escape';
 
-const isProperCommentLength = (comment, length) => comment.length <= length;
-
+const isProperStringLength = (string, length) => {
+  if (typeof(string) !== 'string') {
+    throw new TypeError(`${string} не является строкой`);
+  }
+  return string.length <= length;
+};
 export {
   getRandomPositiveInteger,
   getPositiveIntegerArray,
   shuffleArray,
-  isProperCommentLength,
+  isProperStringLength,
   isEscapeKey
 };
