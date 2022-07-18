@@ -14,25 +14,25 @@ const getPictureId = (event) => event.target.closest('.picture').dataset.picture
 const onFullPictureContainerEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
     event.preventDefault();
-    closeFullPictureContainer();
+    onCloseButton();
   }
 };
 
-function openFullPictureContainer(event) {
+function onMiniatureElement(event) {
   const id = getPictureId(event);
   if (!id) {return;}
   renderFullPictureContainer(randomContentData[id]);
   fullPictureContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.addEventListener('click', closeFullPictureContainer);
+  closeButton.addEventListener('click', onCloseButton);
 }
 
-function closeFullPictureContainer() {
+function onCloseButton() {
   fullPictureContainer.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.removeEventListener('click', closeFullPictureContainer);
+  closeButton.removeEventListener('click', onCloseButton);
 }
 
-miniatureContainer.addEventListener('click', openFullPictureContainer);
+miniatureContainer.addEventListener('click', onMiniatureElement);
