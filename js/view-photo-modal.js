@@ -2,7 +2,9 @@ import { randomContentData } from './data.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
+  renderComments,
   fullPictureContainer,
+  commentsLoader,
 } from'./render-full-size-photo.js';
 
 
@@ -26,6 +28,7 @@ function openFullPictureContainer(event) {
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.addEventListener('click', closeFullPictureContainer);
+  commentsLoader.addEventListener('click', renderComments);
 }
 
 function closeFullPictureContainer() {
@@ -33,6 +36,7 @@ function closeFullPictureContainer() {
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.removeEventListener('click', closeFullPictureContainer);
+  commentsLoader.removeEventListener('click', renderComments);
 }
 
 miniatureContainer.addEventListener('click', openFullPictureContainer);
