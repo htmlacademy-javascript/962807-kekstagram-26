@@ -9,7 +9,11 @@ import {
 const miniatureContainer = document.querySelector('.pictures.container');
 const closeButton = document.querySelector('.big-picture__cancel');
 
-const getPictureId = (event) => event.target.closest('.picture').dataset.pictureId;
+const getPictureId = (event) => {
+  const pictureElement = event.target.closest('.picture');
+  if (!pictureElement) {return;}
+  return pictureElement.dataset.pictureId;
+};
 
 const onFullPictureContainerEscKeyDown = (event) => {
   if (isEscapeKey(event)) {

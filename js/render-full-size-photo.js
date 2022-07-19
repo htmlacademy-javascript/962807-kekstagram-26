@@ -6,6 +6,7 @@ const renderComments = (comments) => {
   const commentElement = fullPictureContainer.querySelector('.social__comment');
   const commentAvatar = commentElement.querySelector('.social__picture');
   const commentMessage = commentElement.querySelector('.social__text');
+  const fragment = document.createDocumentFragment();
   commentContainer.innerHTML = '';
 
   //Заполняем контейнер комментариями и вставляем его в окно
@@ -13,9 +14,9 @@ const renderComments = (comments) => {
     commentAvatar.src = avatar;
     commentAvatar.alt = name;
     commentMessage.textContent = message;
-    commentContainer.append(commentElement.cloneNode(true));
+    fragment.append(commentElement.cloneNode(true));
   });
-
+  commentContainer.append(fragment);
 };
 
 const renderFullPictureContainer = ({description, url, likes, comments}) => {
@@ -23,7 +24,6 @@ const renderFullPictureContainer = ({description, url, likes, comments}) => {
   //Находим элементы для заполнения остальными данными
   const picture = fullPictureContainer.querySelector('.big-picture__img img');
   const authorContainer = fullPictureContainer.querySelector('.social__header');
-  const authorAvatar = authorContainer.querySelector('.social__picture');
   const authorDescription = authorContainer.querySelector('.social__caption');
   const likesCount =  authorContainer.querySelector('.likes-count');
   const commentsCount = fullPictureContainer.querySelector('.social__comment-count');
@@ -33,7 +33,6 @@ const renderFullPictureContainer = ({description, url, likes, comments}) => {
   //Заполняем элементы данными
   picture.src = url;
   picture.alt = description;
-  authorAvatar.src = 'img/avatar-1.svg';
   authorDescription.textContent = description;
   likesCount.textContent = likes;
   commentsCountSummary.textContent = comments.length;
