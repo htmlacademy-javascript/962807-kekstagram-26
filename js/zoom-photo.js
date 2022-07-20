@@ -1,17 +1,49 @@
 const picturePreview = document.querySelector('.img-upload__preview img');
 const zoomContainer = document.querySelector('.img-upload__scale');
-const zoomIn = zoomContainer.querySelector('.scale__control--bigger');
-const zoomOut = zoomContainer.querySelector('.scale__control--smaller');
-const zommValue = zoomContainer.querySelector('.scale__control--value');
-const zoomStep = 25;
+const zoomInButton = zoomContainer.querySelector('.scale__control--bigger');
+const zoomOutButton = zoomContainer.querySelector('.scale__control--smaller');
+const zoomValue = zoomContainer.querySelector('.scale__control--value');
+const ZOOM_STEP = 25;
+const ZOOM_MIN = 0;
+const ZOOM_MAX = 100;
 // transform: scale(0.75)
 
+const getZoomValue = () => parseInt(zoomValue.value, 10);
 
+const changeZoom = (zoomNewValue) => {
+  zoomValue.value = `${zoomNewValue}%`;
+  picturePreview.style.transform =`scale(${(zoomNewValue/100).toFixed(2)})`;
+};
 
+const zoomOut = () => {
+  const zoomCurrent = getZoomValue();
+  const zoomNewValue = zoomCurrent - ZOOM_STEP;
+  if (zoomNewValue <= ZOOM_MIN) {return;}
+  changeZoom(zoomNewValue);
+};
 
+const zoomIn = () => {
+    const zoomCurrent = getZoomValue();
+    const zoomNewValue = zoomCurrent + ZOOM_STEP;
+    if (zoomNewValue >= ZOOM_MAX) {return;}
+    changeZoom(zoomNewValue);
+  };
 
+  const zoomDefault = () => {
+    changeZoom(ZOOM_MAX);
+  }
 
+const addZoomHandler = () => {
+  zoomOutButton.addEventListener('click', zoomOut);
+  zoomInButton.addEventListener('click', zoomIn);
+}
 
+const removeZoomHandler = () => {
+  zoomOutButton.removeEventListener('click', zoomOut);
+  zoomInButton.removeEventListener('click', zoomIn);
+}
+
+export {addZoomHandler, removeZoomHandler};
 
 
 /* Напишите код, который позволит пользователю редактировать масштаб изображения.Кроме визуального применения эффекта необходимо записывать значение в поле формы с масштабом, доступное только для чтения, для дальнейшей отправки на сервер.
