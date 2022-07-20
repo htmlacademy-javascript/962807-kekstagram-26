@@ -16,11 +16,14 @@ const shuffleArray = (array) => {
   return result;
 };
 
+const isEscapeKey = (event) => event.key === 'Escape';
+
 const isProperCommentLength = (comment, length) => comment.length <= length;
 
 export {
   getRandomPositiveInteger,
   getPositiveIntegerArray,
   shuffleArray,
-  isProperCommentLength
+  isProperCommentLength,
+  isEscapeKey
 };
