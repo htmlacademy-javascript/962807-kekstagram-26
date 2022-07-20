@@ -2,7 +2,7 @@ import {
   getRandomPositiveInteger,
   getPositiveIntegerArray,
   shuffleArray,
-  isProperCommentLength
+  isProperStringLength
 } from './util.js';
 
 const DESCRIPTIONS = [
@@ -80,7 +80,7 @@ function generateRandomContent(count) {
 }
 
 
-isProperCommentLength('comment', 3);
+isProperStringLength('comment', 3);
 
 const randomContentData = generateRandomContent(25);
 
