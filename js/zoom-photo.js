@@ -15,35 +15,35 @@ const changeZoom = (zoomNewValue) => {
   picturePreview.style.transform =`scale(${(zoomNewValue/100).toFixed(2)})`;
 };
 
-const zoomOut = () => {
+const onZoomOut = () => {
   const zoomCurrent = getZoomValue();
   const zoomNewValue = zoomCurrent - ZOOM_STEP;
   if (zoomNewValue <= ZOOM_MIN) {return;}
   changeZoom(zoomNewValue);
 };
 
-const zoomIn = () => {
-    const zoomCurrent = getZoomValue();
-    const zoomNewValue = zoomCurrent + ZOOM_STEP;
-    if (zoomNewValue >= ZOOM_MAX) {return;}
-    changeZoom(zoomNewValue);
-  };
+const onZoomIn = () => {
+  const zoomCurrent = getZoomValue();
+  const zoomNewValue = zoomCurrent + ZOOM_STEP;
+  if (zoomNewValue >= ZOOM_MAX) {return;}
+  changeZoom(zoomNewValue);
+};
 
-  const zoomDefault = () => {
-    changeZoom(ZOOM_MAX);
-  }
+const setZoomDefault = () => {
+  changeZoom(ZOOM_MAX);
+};
 
 const addZoomHandler = () => {
-  zoomOutButton.addEventListener('click', zoomOut);
-  zoomInButton.addEventListener('click', zoomIn);
-}
+  zoomOutButton.addEventListener('click', onZoomOut);
+  zoomInButton.addEventListener('click', onZoomIn);
+};
 
 const removeZoomHandler = () => {
-  zoomOutButton.removeEventListener('click', zoomOut);
-  zoomInButton.removeEventListener('click', zoomIn);
-}
+  zoomOutButton.removeEventListener('click', onZoomOut);
+  zoomInButton.removeEventListener('click', onZoomIn);
+};
 
-export {addZoomHandler, removeZoomHandler};
+export {addZoomHandler, removeZoomHandler, setZoomDefault};
 
 
 /* Напишите код, который позволит пользователю редактировать масштаб изображения.Кроме визуального применения эффекта необходимо записывать значение в поле формы с масштабом, доступное только для чтения, для дальнейшей отправки на сервер.
