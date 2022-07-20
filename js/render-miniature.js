@@ -5,8 +5,10 @@ const fragment = document.createDocumentFragment();
 
 const renderContentElement = (item, id) => {
   const element = elementTemplate.cloneNode(true);
+  const pictureImg = element.querySelector('.picture__img');
   element.querySelector('.picture').dataset.pictureId = id;
-  element.querySelector('.picture__img').alt = item.description;
+  pictureImg.alt = item.description;
+  pictureImg.src = item.url;
   element.querySelector('.picture__img').src = item.url;
   element.querySelector('.picture__likes').textContent = item.likes;
   element.querySelector('.picture__comments').textContent = item.comments.length;

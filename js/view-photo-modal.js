@@ -2,7 +2,7 @@ import { randomContentData } from './data.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
-  renderComments,
+  renderComments as onCommentsLoader,
   fullPictureContainer,
   commentsLoader,
 } from'./render-full-size-photo.js';
@@ -12,34 +12,38 @@ import {addZoomHandler, removeZoomHandler} from './zoom-photo.js';
 const miniatureContainer = document.querySelector('.pictures.container');
 const closeButton = document.querySelector('.big-picture__cancel');
 
-const getPictureId = (event) => event.target.closest('.picture').dataset.pictureId;
+const getPictureId = (event) => {
+  const pictureElement = event.target.closest('.picture');
+  if (!pictureElement) {return;}
+  return pictureElement.dataset.pictureId;
+};
 
 const onFullPictureContainerEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
     event.preventDefault();
-    closeFullPictureContainer();
+    onCloseButton();
   }
 };
 
-function openFullPictureContainer(event) {
+function onMiniatureElement(event) {
   const id = getPictureId(event);
   if (!id) {return;}
   renderFullPictureContainer(randomContentData[id]);
   fullPictureContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.addEventListener('click', closeFullPictureContainer);
-  commentsLoader.addEventListener('click', renderComments);
+  closeButton.addEventListener('click', onCloseButton);
+  commentsLoader.addEventListener('click', onCommentsLoader);
   addZoomHandler();
 }
 
-function closeFullPictureContainer() {
+function onCloseButton() {
   fullPictureContainer.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.removeEventListener('click', closeFullPictureContainer);
-  commentsLoader.removeEventListener('click', renderComments);
+  closeButton.removeEventListener('click', onCloseButton);
+  commentsLoader.removeEventListener('click', onCommentsLoader);
   removeZoomHandler();
 }
 
-miniatureContainer.addEventListener('click', openFullPictureContainer);
+miniatureContainer.addEventListener('click', onMiniatureElement);

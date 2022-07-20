@@ -4,7 +4,6 @@ import { setZoomDefault } from './zoom-photo.js';
 const fullPictureContainer = document.querySelector('.big-picture');
 const picture = fullPictureContainer.querySelector('.big-picture__img img');
 const authorContainer = fullPictureContainer.querySelector('.social__header');
-const authorAvatar = authorContainer.querySelector('.social__picture');
 const authorDescription = authorContainer.querySelector('.social__caption');
 const likesCount =  authorContainer.querySelector('.likes-count');
 const commentsCount = fullPictureContainer.querySelector('.social__comment-count');
@@ -16,9 +15,10 @@ const commentContainer = fullPictureContainer.querySelector('.social__comments')
 const commentElement = fullPictureContainer.querySelector('.social__comment');
 const commentAvatar = commentElement.querySelector('.social__picture');
 const commentMessage = commentElement.querySelector('.social__text');
+const fragment = document.createDocumentFragment();
 
 const preparedComments = []; //Кэш для рендеринга комментариев
-const COMMENT_RENDER_COUNT = 2; //Количество(шаг) подгружаемых комментариев
+const COMMENT_RENDER_COUNT = 5; //Количество (шаг) подгружаемых комментариев
 
 
 //Разбивает исходный массив комментариев на подмассивы по количеству подгружаемых комментариев
@@ -43,8 +43,9 @@ const renderComments = () => {
     commentAvatar.src = avatar;
     commentAvatar.alt = name;
     commentMessage.textContent = message;
-    commentContainer.append(commentElement.cloneNode(true));
+    fragment.append(commentElement.cloneNode(true));
   });
+  commentContainer.append(fragment);
 
   commentsCount.firstChild.data = `${commentContainer.children.length} из `;
   if (commentContainer.children.length === +commentsCountSummary.textContent) {
@@ -58,7 +59,6 @@ const renderFullPictureContainer = ({description, url, likes, comments}) => {
   commentContainer.innerHTML = '';
   picture.src = url;
   picture.alt = description;
-  authorAvatar.src = 'img/avatar-1.svg';
   authorDescription.textContent = description;
   likesCount.textContent = likes;
   commentsCountSummary.textContent = comments.length;

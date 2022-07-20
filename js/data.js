@@ -49,7 +49,7 @@ const NAMES = [
   'Мария Кондрашова',
   'Лев Долгов',
 ];
-const LIMIT_COMMENTS_COUNT = 5;
+const LIMIT_COMMENTS_COUNT = 15;
 
 function generateRandomContent(count) {
   const idArray = getPositiveIntegerArray(count);
