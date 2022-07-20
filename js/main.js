@@ -1,3 +1,5 @@
-import './render-miniature.js';
 import './render-full-size-photo.js';
-import './user-modal.js';
+import './render-miniature.js';
+import './upload-photo-modal.js';
+import './view-photo-modal.js';
+import './validate-upload-photo-form.js';
