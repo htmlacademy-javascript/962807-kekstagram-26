@@ -2,24 +2,21 @@
 const fullPictureContainer = document.querySelector('.big-picture');
 const picture = fullPictureContainer.querySelector('.big-picture__img img');
 const authorContainer = fullPictureContainer.querySelector('.social__header');
-const authorAvatar = authorContainer.querySelector('.social__picture');
 const authorDescription = authorContainer.querySelector('.social__caption');
 const likesCount =  authorContainer.querySelector('.likes-count');
 const commentsCount = fullPictureContainer.querySelector('.social__comment-count');
 const commentsCountSummary = commentsCount.querySelector('.comments-count');
 const commentsLoader = fullPictureContainer.querySelector('.comments-loader');
 
-const renderComments = (comments) => {
-  //Находим элементы для заполнения комментариями
-  const commentContainer = fullPictureContainer.querySelector('.social__comments');
-  const commentElement = fullPictureContainer.querySelector('.social__comment');
-  const commentAvatar = commentElement.querySelector('.social__picture');
-  const commentMessage = commentElement.querySelector('.social__text');
-  const fragment = document.createDocumentFragment();
-  commentContainer.innerHTML = '';
+//Находим элементы для заполнения комментариями
+const commentContainer = fullPictureContainer.querySelector('.social__comments');
+const commentElement = fullPictureContainer.querySelector('.social__comment');
+const commentAvatar = commentElement.querySelector('.social__picture');
+const commentMessage = commentElement.querySelector('.social__text');
+const fragment = document.createDocumentFragment();
 
 const preparedComments = []; //Кэш для рендеринга комментариев
-const COMMENT_RENDER_COUNT = 2; //Количество(шаг) подгружаемых комментариев
+const COMMENT_RENDER_COUNT = 5; //Количество (шаг) подгружаемых комментариев
 
 
 //Разбивает исходный массив комментариев на подмассивы по количеству подгружаемых комментариев
