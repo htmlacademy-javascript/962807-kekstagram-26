@@ -18,14 +18,14 @@ const changeZoom = (zoomNewValue) => {
 const onZoomOut = () => {
   const zoomCurrent = getZoomValue();
   const zoomNewValue = zoomCurrent - ZOOM_STEP;
-  if (zoomNewValue <= ZOOM_MIN) {return;}
+  if (zoomNewValue < ZOOM_MIN) {return;}
   changeZoom(zoomNewValue);
 };
 
 const onZoomIn = () => {
   const zoomCurrent = getZoomValue();
   const zoomNewValue = zoomCurrent + ZOOM_STEP;
-  if (zoomNewValue >= ZOOM_MAX) {return;}
+  if (zoomNewValue > ZOOM_MAX) {return;}
   changeZoom(zoomNewValue);
 };
 
