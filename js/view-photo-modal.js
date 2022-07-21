@@ -2,14 +2,18 @@ import { randomContentData } from './data.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
-  renderComments as onCommentsLoaderClick,
   fullPictureContainer,
   commentsLoader,
+  renderComments,
 } from'./render-full-size-photo.js';
 
 
 const miniatureContainer = document.querySelector('.pictures.container');
 const closeButton = document.querySelector('.big-picture__cancel');
+
+const onCommentsLoaderClick = () => {
+  renderComments();
+};
 
 const getPictureId = (event) => {
   const pictureElement = event.target.closest('.picture');
