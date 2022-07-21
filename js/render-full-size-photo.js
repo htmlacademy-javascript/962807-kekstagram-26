@@ -1,3 +1,5 @@
+import { setZoomDefault } from './zoom-photo.js';
+
 //Находим элементы для заполнения целевыми данными
 const fullPictureContainer = document.querySelector('.big-picture');
 const picture = fullPictureContainer.querySelector('.big-picture__img img');
@@ -63,6 +65,7 @@ const renderFullPictureContainer = ({description, url, likes, comments}) => {
 
   prepareComments(comments);
   renderComments();
+  setZoomDefault();
 };
 
 export {renderFullPictureContainer, renderComments, fullPictureContainer, commentsLoader};

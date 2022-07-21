@@ -6,6 +6,7 @@ import {
   commentsLoader,
   renderComments,
 } from'./render-full-size-photo.js';
+import {addZoomHandler, removeZoomHandler} from './zoom-photo.js';
 
 
 const miniatureContainer = document.querySelector('.pictures.container');
@@ -37,6 +38,7 @@ function onMiniatureElementClick(event) {
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.addEventListener('click', onCloseButtonClick);
   commentsLoader.addEventListener('click', onCommentsLoaderClick);
+  addZoomHandler();
 }
 
 function onCloseButtonClick() {
@@ -45,6 +47,7 @@ function onCloseButtonClick() {
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.removeEventListener('click', onCloseButtonClick);
   commentsLoader.removeEventListener('click', onCommentsLoaderClick);
+  removeZoomHandler();
 }
 
 miniatureContainer.addEventListener('click', onMiniatureElementClick);

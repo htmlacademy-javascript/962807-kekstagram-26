@@ -3,3 +3,4 @@ import './render-miniature.js';
 import './upload-photo-modal.js';
 import './view-photo-modal.js';
 import './validate-upload-photo-form.js';
+import './zoom-photo.js';
