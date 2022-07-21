@@ -22,11 +22,11 @@ const COMMENT_RENDER_COUNT = 5; //Количество (шаг) подгружа
 //Разбивает исходный массив комментариев на подмассивы по количеству подгружаемых комментариев
 const prepareComments = (comments) => {
   preparedComments.length=0;
-  comments = comments.slice();
-  for (let index = 0; index < comments.length; index+=COMMENT_RENDER_COUNT) {
-    const ending = (comments[index+COMMENT_RENDER_COUNT]) ?
-      index+COMMENT_RENDER_COUNT: comments.length;
-    const commentsPortion = comments.slice(index, ending);
+  const rawComments = comments.slice();
+  for (let index = 0; index < rawComments.length; index+=COMMENT_RENDER_COUNT) {
+    const ending = (rawComments[index+COMMENT_RENDER_COUNT]) ?
+      index+COMMENT_RENDER_COUNT: rawComments.length;
+    const commentsPortion = rawComments.slice(index, ending);
     preparedComments.push(commentsPortion);
   }
   return preparedComments;

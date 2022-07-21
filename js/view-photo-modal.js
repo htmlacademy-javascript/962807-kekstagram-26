@@ -2,7 +2,7 @@ import { randomContentData } from './data.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
-  renderComments as onCommentsLoader,
+  renderComments as onCommentsLoaderClick,
   fullPictureContainer,
   commentsLoader,
 } from'./render-full-size-photo.js';
@@ -20,27 +20,27 @@ const getPictureId = (event) => {
 const onFullPictureContainerEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
     event.preventDefault();
-    onCloseButton();
+    onCloseButtonClick();
   }
 };
 
-function onMiniatureElement(event) {
+function onMiniatureElementClick(event) {
   const id = getPictureId(event);
   if (!id) {return;}
   renderFullPictureContainer(randomContentData[id]);
   fullPictureContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.addEventListener('click', onCloseButton);
-  commentsLoader.addEventListener('click', onCommentsLoader);
+  closeButton.addEventListener('click', onCloseButtonClick);
+  commentsLoader.addEventListener('click', onCommentsLoaderClick);
 }
 
-function onCloseButton() {
+function onCloseButtonClick() {
   fullPictureContainer.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
-  closeButton.removeEventListener('click', onCloseButton);
-  commentsLoader.removeEventListener('click', onCommentsLoader);
+  closeButton.removeEventListener('click', onCloseButtonClick);
+  commentsLoader.removeEventListener('click', onCommentsLoaderClick);
 }
 
-miniatureContainer.addEventListener('click', onMiniatureElement);
+miniatureContainer.addEventListener('click', onMiniatureElementClick);

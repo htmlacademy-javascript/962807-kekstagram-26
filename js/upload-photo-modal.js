@@ -15,7 +15,7 @@ const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
     if (document.activeElement === hashtag) {return;}
     event.preventDefault();
-    onClosePictureFormButton();
+    onClosePictureFormButtonClick();
   }
 };
 
@@ -27,19 +27,19 @@ const resetPictureFormDefaults = () => {
   picturePreview.src = '';
 };
 
-function onUploadPictureButton() {
+function onUploadPictureButtonClick() {
   uploadPictureForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  closePictureFormButton.addEventListener('click', onClosePictureFormButton);
+  closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
   document.addEventListener('keydown', onPictureFormEscKeyDown);
 }
 
-function onClosePictureFormButton() {
+function onClosePictureFormButtonClick() {
   uploadPictureForm.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPictureFormEscKeyDown);
-  closePictureFormButton.removeEventListener('click', onClosePictureFormButton);
+  closePictureFormButton.removeEventListener('click', onClosePictureFormButtonClick);
   resetPictureFormDefaults();
 }
 
-uploadPictureButton.addEventListener('change', onUploadPictureButton);
+uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
