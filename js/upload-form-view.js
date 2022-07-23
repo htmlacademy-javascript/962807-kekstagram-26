@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import {addZoomHandler, removeZoomHandler, setZoomDefault} from './upload-form-zoom-photo.js';
+import {addEffectsHandler, removeEffectsHandler} from './upload-form-processing-photo.js';
 
 const uploadPictureForm = document.querySelector('.img-upload__overlay');
 const uploadPictureButton = document.querySelector('#upload-file');
@@ -32,6 +34,9 @@ function onUploadPictureButtonClick() {
   document.body.classList.add('modal-open');
   closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
   document.addEventListener('keydown', onPictureFormEscKeyDown);
+  setZoomDefault();
+  addZoomHandler();
+  addEffectsHandler();
 }
 
 function onClosePictureFormButtonClick() {
@@ -40,6 +45,8 @@ function onClosePictureFormButtonClick() {
   document.removeEventListener('keydown', onPictureFormEscKeyDown);
   closePictureFormButton.removeEventListener('click', onClosePictureFormButtonClick);
   resetPictureFormDefaults();
+  removeZoomHandler();
+  removeEffectsHandler();
 }
 
 uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);

@@ -1,6 +1,7 @@
-import './render-full-size-photo.js';
-import './render-miniature.js';
-import './upload-photo-modal.js';
-import './view-photo-modal.js';
-import './validate-upload-photo-form.js';
-import './zoom-photo.js';
+import './full-size-picture-render.js';
+import './miniature-render.js';
+import './upload-form-view.js';
+import './full-size-picture-view.js';
+import './upload-form-validate.js';
+import './upload-form-zoom-photo.js';
+import './upload-form-processing-photo.js';

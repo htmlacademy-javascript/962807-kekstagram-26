@@ -1,4 +1,4 @@
-import { setZoomDefault } from './zoom-photo.js';
+import { setZoomDefault } from './upload-form-zoom-photo.js';
 
 //Находим элементы для заполнения целевыми данными
 const fullPictureContainer = document.querySelector('.big-picture');

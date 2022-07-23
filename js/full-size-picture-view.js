@@ -1,20 +1,16 @@
-import { randomContentData } from './data.js';
+import { randomContentData } from './data-generate.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
   fullPictureContainer,
   commentsLoader,
   renderComments,
-} from'./render-full-size-photo.js';
-import {addZoomHandler, removeZoomHandler} from './zoom-photo.js';
-
+} from'./full-size-picture-render.js';
 
 const miniatureContainer = document.querySelector('.pictures.container');
 const closeButton = document.querySelector('.big-picture__cancel');
 
-const onCommentsLoaderClick = () => {
-  renderComments();
-};
+const onCommentsLoaderClick = () => renderComments();
 
 const getPictureId = (event) => {
   const pictureElement = event.target.closest('.picture');
@@ -38,7 +34,6 @@ function onMiniatureElementClick(event) {
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.addEventListener('click', onCloseButtonClick);
   commentsLoader.addEventListener('click', onCommentsLoaderClick);
-  addZoomHandler();
 }
 
 function onCloseButtonClick() {
@@ -47,7 +42,6 @@ function onCloseButtonClick() {
   document.removeEventListener('keydown', onFullPictureContainerEscKeyDown);
   closeButton.removeEventListener('click', onCloseButtonClick);
   commentsLoader.removeEventListener('click', onCommentsLoaderClick);
-  removeZoomHandler();
 }
 
 miniatureContainer.addEventListener('click', onMiniatureElementClick);
