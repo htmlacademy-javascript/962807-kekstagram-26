@@ -1,5 +1,5 @@
 import { showAlertOnSuccess, showAlertOnError } from './upload-form-alerts.js';
-import { onClosePictureFormButtonClick } from './upload-form-view.js';
+import { onClosePictureFormButtonClick} from './upload-form-view.js';
 import { pristine, uploadPhotoForm } from './upload-form-validate.js';
 import { sendData } from './network.js';
 
@@ -25,7 +25,6 @@ const onUploadSuccess = () => {
 const onUploadError = () => {
   showAlertOnError();
   unblockSubmitButton();
-  onClosePictureFormButtonClick();
 };
 
 //Валидация и отправка формы
@@ -40,7 +39,5 @@ const setPhotoFormSubmit = () => {
     }
   });
 };
-
-setPhotoFormSubmit();
 
 export {setPhotoFormSubmit};

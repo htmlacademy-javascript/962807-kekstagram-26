@@ -29,9 +29,18 @@ const resetPictureFormDefaults = () => {
   picturePreview.src = '';
 };
 
-function onUploadPictureButtonClick() {
+const revealPictureForm = () => {
   uploadPictureForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
+};
+
+const hidePictureForm = () => {
+  uploadPictureForm.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+};
+
+function onUploadPictureButtonClick() {
+  revealPictureForm();
   closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
   document.addEventListener('keydown', onPictureFormEscKeyDown);
   setZoomDefault();
@@ -40,8 +49,7 @@ function onUploadPictureButtonClick() {
 }
 
 function onClosePictureFormButtonClick() {
-  uploadPictureForm.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+  hidePictureForm();
   document.removeEventListener('keydown', onPictureFormEscKeyDown);
   closePictureFormButton.removeEventListener('click', onClosePictureFormButtonClick);
   resetPictureFormDefaults();
@@ -51,4 +59,4 @@ function onClosePictureFormButtonClick() {
 
 uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
 
-export {onClosePictureFormButtonClick};
+export {onClosePictureFormButtonClick, hidePictureForm, revealPictureForm};

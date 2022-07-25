@@ -1,3 +1,4 @@
+import { hidePictureForm, revealPictureForm } from './upload-form-view.js';
 import { isEscapeKey } from './util.js';
 
 const bodyElement = document.querySelector('body');
@@ -13,6 +14,7 @@ const removeAlertElement = () => {
 const onAlertElementEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
     event.preventDefault();
+    event.stopPropagation();
     onCloseButtonClick();
   }
 };
@@ -24,18 +26,21 @@ const onOutOfAlertElementClick = (event) => {
 };
 
 function onCloseButtonClick() {
+  const element = getAlertElement();
   removeAlertElement();
-  document.removeEventListener('click', onOutOfAlertElementClick);
-  document.removeEventListener('keydown', onAlertElementEscKeyDown);
+  bodyElement.removeEventListener('click', onOutOfAlertElementClick);
+  bodyElement.removeEventListener('keydown', onAlertElementEscKeyDown);
+  if (element.matches('.error')) {revealPictureForm();}
 }
 
 const renderAlertElement = (template) => {
   const element = template.cloneNode(true);
   const closeButton = element.querySelector('button');
+  if (element.firstElementChild.matches('.error')) { hidePictureForm();}
   bodyElement.append(element);
   closeButton.addEventListener('click', onCloseButtonClick);
-  document.body.addEventListener('click', onOutOfAlertElementClick);
-  document.body.addEventListener('keydown', onAlertElementEscKeyDown);
+  bodyElement.addEventListener('click', onOutOfAlertElementClick);
+  bodyElement.addEventListener('keydown', onAlertElementEscKeyDown);
 };
 
 const showAlertOnSuccess = () => renderAlertElement(templateSuccess);
