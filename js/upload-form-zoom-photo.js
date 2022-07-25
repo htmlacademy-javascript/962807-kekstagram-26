@@ -5,7 +5,7 @@ const zoomOutButton = zoomContainer.querySelector('.scale__control--smaller');
 const zoomValue = zoomContainer.querySelector('.scale__control--value');
 
 const ZOOM_STEP = 25;
-const ZOOM_MIN = 0;
+const ZOOM_MIN = 25;
 const ZOOM_MAX = 100;
 
 const getZoomValue = () => parseInt(zoomValue.value, 10);
@@ -15,14 +15,14 @@ const changeZoom = (zoomNewValue) => {
   picturePreview.style.transform =`scale(${(zoomNewValue/100).toFixed(2)})`;
 };
 
-const onZoomOut = () => {
+const onZoomOutButtonClick = () => {
   const zoomCurrent = getZoomValue();
   const zoomNewValue = zoomCurrent - ZOOM_STEP;
   if (zoomNewValue < ZOOM_MIN) {return;}
   changeZoom(zoomNewValue);
 };
 
-const onZoomIn = () => {
+const onZoomInButtonClick = () => {
   const zoomCurrent = getZoomValue();
   const zoomNewValue = zoomCurrent + ZOOM_STEP;
   if (zoomNewValue > ZOOM_MAX) {return;}
@@ -34,13 +34,13 @@ const setZoomDefault = () => {
 };
 
 const addZoomHandler = () => {
-  zoomOutButton.addEventListener('click', onZoomOut);
-  zoomInButton.addEventListener('click', onZoomIn);
+  zoomOutButton.addEventListener('click', onZoomOutButtonClick);
+  zoomInButton.addEventListener('click', onZoomInButtonClick);
 };
 
 const removeZoomHandler = () => {
-  zoomOutButton.removeEventListener('click', onZoomOut);
-  zoomInButton.removeEventListener('click', onZoomIn);
+  zoomOutButton.removeEventListener('click', onZoomOutButtonClick);
+  zoomInButton.removeEventListener('click', onZoomInButtonClick);
 };
 
 export {addZoomHandler, removeZoomHandler, setZoomDefault};
