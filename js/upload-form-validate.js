@@ -1,4 +1,5 @@
 import {isProperStringLength} from './util.js';
+
 const uploadPhotoForm = document.querySelector('#upload-select-image');
 const hashtagInput = document.querySelector('.text__hashtags');
 const descriptionInput = document.querySelector('.text__description');
@@ -12,7 +13,6 @@ const pristine = new Pristine(uploadPhotoForm, {
   errorTextTag: 'span',
   errorTextParent: 'img-upload__text',
 });
-
 
 // Добавляем настраиваемый валидатор для комментария
 pristine.addValidator(descriptionInput, (value) => isProperStringLength(value, MAX_STRING_LENGTH),
@@ -50,9 +50,4 @@ pristine.addValidator(hashtagInput, checkHashtagsChars,
   символы пунктуации (тире, дефис, запятая и т. п.);
   эмодзи и т. д.`);
 
-// Добавляем общий валидатор для формы
-
-uploadPhotoForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  pristine.validate();
-});
+export {pristine, uploadPhotoForm};

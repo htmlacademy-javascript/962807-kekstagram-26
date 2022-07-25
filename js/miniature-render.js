@@ -1,5 +1,3 @@
-import { randomContentData } from './data-generate.js';
-
 const elementTemplate = document.querySelector('#picture').content;
 const fragment = document.createDocumentFragment();
 
@@ -20,4 +18,4 @@ const renderContent = (content) => {
   document.querySelector('.pictures__title').after(fragment);
 };
 
-renderContent(randomContentData);
+export {renderContent};

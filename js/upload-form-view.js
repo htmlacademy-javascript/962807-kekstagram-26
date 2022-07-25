@@ -50,3 +50,5 @@ function onClosePictureFormButtonClick() {
 }
 
 uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
+
+export {onClosePictureFormButtonClick};
