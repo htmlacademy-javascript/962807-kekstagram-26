@@ -16,7 +16,8 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
-    if (document.activeElement === hashtag) {return;}
+    if (document.activeElement === hashtag ||
+      document.activeElement === textDescription) {return;}
     event.preventDefault();
     onClosePictureFormButtonClick();
   }
