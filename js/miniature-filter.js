@@ -17,8 +17,10 @@ const getActiveButton = () => {
 
 }
 
-const toggleCurrentFilter = (elem) => {
-  filterForm.querySelector('.img-filters__button--active').classList.remove()
+const toggleCurrentFilter = (element) => {
+  const activeClassButton = 'img-filters__button--active';
+  filterForm.querySelector('.img-filters__button--active').classList.remove(activeClassButton);
+  element.classList.add(activeClassButton);
 }
 
 // const currentFilter = () => {
