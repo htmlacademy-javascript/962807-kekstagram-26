@@ -1,0 +1,51 @@
+import { isEscapeKey } from './util.js';
+import {addZoomHandler, removeZoomHandler, setZoomDefault} from './upload-form-zoom-photo.js';
+import {addEffectsHandler, removeEffectsHandler} from './upload-form-processing-photo.js';
+
+const uploadPictureForm = document.querySelector('.img-upload__overlay');
+const uploadPictureButton = document.querySelector('#upload-file');
+const closePictureFormButton = document.querySelector('#upload-cancel');
+
+const effectItemDefault = document.querySelector('#effect-none');
+const hashtag = document.querySelector('.text__hashtags');
+const textDescription = document.querySelector('.text__description');
+const pictureInput = document.querySelector('.img-upload__input');
+
+const onPictureFormEscKeyDown = (event) => {
+  if (isEscapeKey(event)) {
+    if (document.activeElement === hashtag) {return;}
+    event.preventDefault();
+    onClosePictureFormButtonClick();
+  }
+};
+
+const resetPictureFormDefaults = () => {
+  effectItemDefault.checked = true;
+  hashtag.value = '';
+  textDescription.value = '';
+  pictureInput.value = '';
+};
+
+function onUploadPictureButtonClick() {
+  uploadPictureForm.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
+  document.addEventListener('keydown', onPictureFormEscKeyDown);
+  setZoomDefault();
+  addZoomHandler();
+  addEffectsHandler();
+}
+
+function onClosePictureFormButtonClick() {
+  uploadPictureForm.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onPictureFormEscKeyDown);
+  closePictureFormButton.removeEventListener('click', onClosePictureFormButtonClick);
+  resetPictureFormDefaults();
+  removeZoomHandler();
+  removeEffectsHandler();
+}
+
+uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
+
+export {onClosePictureFormButtonClick};
