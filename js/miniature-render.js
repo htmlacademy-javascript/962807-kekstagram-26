@@ -1,5 +1,6 @@
 const elementTemplate = document.querySelector('#picture').content;
 const fragment = document.createDocumentFragment();
+const filterSection = document.querySelector('.img-filters');
 
 const renderContentElement = (item, id) => {
   const element = elementTemplate.cloneNode(true);
@@ -16,6 +17,12 @@ const renderContentElement = (item, id) => {
 const renderContent = (content) => {
   content.forEach(renderContentElement);
   document.querySelector('.pictures__title').after(fragment);
+  filterSection.classList.remove('img-filters--inactive');
 };
 
-export {renderContent};
+const removeContent = () => {
+  document.querySelectorAll('.picture').forEach((element) => element.remove());
+  filterSection.classList.add('img-filters--inactive');
+};
+
+export {renderContent, removeContent};
