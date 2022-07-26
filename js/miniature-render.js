@@ -1,4 +1,4 @@
-import { randomContentData } from './data.js';
+import { randomContentData } from './data-generate.js';
 
 const elementTemplate = document.querySelector('#picture').content;
 const fragment = document.createDocumentFragment();
