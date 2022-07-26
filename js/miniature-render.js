@@ -22,7 +22,6 @@ const renderContent = (content) => {
 
 const removeContent = () => {
   document.querySelectorAll('.picture').forEach((element) => element.remove());
-  filterSection.classList.add('img-filters--inactive');
 };
 
 export {renderContent, removeContent};
