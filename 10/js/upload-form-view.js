@@ -6,12 +6,10 @@ const uploadPictureForm = document.querySelector('.img-upload__overlay');
 const uploadPictureButton = document.querySelector('#upload-file');
 const closePictureFormButton = document.querySelector('#upload-cancel');
 
-const scaleControl = document.querySelector('.scale__control--value');
 const effectItemDefault = document.querySelector('#effect-none');
 const hashtag = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
-const picturePreview = document.querySelector('.img-upload__preview img');
-
+const pictureInput = document.querySelector('.img-upload__input');
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
@@ -22,25 +20,15 @@ const onPictureFormEscKeyDown = (event) => {
 };
 
 const resetPictureFormDefaults = () => {
-  scaleControl.value = '55%'; // text
-  effectItemDefault.checked = true; // radio
-  hashtag.placeholder = '#ХэшТег'; // input
-  textDescription.placeholder = 'Ваш комментарий...'; // textarea
-  picturePreview.src = '';
-};
-
-const revealPictureForm = () => {
-  uploadPictureForm.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-};
-
-const hidePictureForm = () => {
-  uploadPictureForm.classList.add('hidden');
-  document.body.classList.remove('modal-open');
+  effectItemDefault.checked = true;
+  hashtag.value = '';
+  textDescription.value = '';
+  pictureInput.value = '';
 };
 
 function onUploadPictureButtonClick() {
-  revealPictureForm();
+  uploadPictureForm.classList.remove('hidden');
+  document.body.classList.add('modal-open');
   closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
   document.addEventListener('keydown', onPictureFormEscKeyDown);
   setZoomDefault();
@@ -49,7 +37,8 @@ function onUploadPictureButtonClick() {
 }
 
 function onClosePictureFormButtonClick() {
-  hidePictureForm();
+  uploadPictureForm.classList.add('hidden');
+  document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPictureFormEscKeyDown);
   closePictureFormButton.removeEventListener('click', onClosePictureFormButtonClick);
   resetPictureFormDefaults();
@@ -59,4 +48,4 @@ function onClosePictureFormButtonClick() {
 
 uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
 
-export {onClosePictureFormButtonClick, hidePictureForm, revealPictureForm};
+export {onClosePictureFormButtonClick};

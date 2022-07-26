@@ -1,5 +1,5 @@
 const GET_URL = 'https://26.javascript.pages.academy/kekstagram/data';
-const POST_URL = 'https://26.javascript.pages.academy/kekstagra';
+const POST_URL = 'https://26.javascript.pages.academy/kekstagram';
 const contentData=[];
 
 const getData = (onSuccess, onFail) => {
