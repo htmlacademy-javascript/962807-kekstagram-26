@@ -1,4 +1,4 @@
-import { randomContentData } from './data-generate.js';
+import { contentData } from './network.js';
 import { isEscapeKey } from './util.js';
 import {
   renderFullPictureContainer,
@@ -28,7 +28,7 @@ const onFullPictureContainerEscKeyDown = (event) => {
 function onMiniatureElementClick(event) {
   const id = getPictureId(event);
   if (!id) {return;}
-  renderFullPictureContainer(randomContentData[id]);
+  renderFullPictureContainer(contentData[id]);
   fullPictureContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFullPictureContainerEscKeyDown);

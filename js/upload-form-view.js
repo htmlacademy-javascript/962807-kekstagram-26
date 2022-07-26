@@ -6,12 +6,10 @@ const uploadPictureForm = document.querySelector('.img-upload__overlay');
 const uploadPictureButton = document.querySelector('#upload-file');
 const closePictureFormButton = document.querySelector('#upload-cancel');
 
-const scaleControl = document.querySelector('.scale__control--value');
 const effectItemDefault = document.querySelector('#effect-none');
 const hashtag = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
-const picturePreview = document.querySelector('.img-upload__preview img');
-
+const pictureInput = document.querySelector('.img-upload__input');
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
@@ -22,11 +20,10 @@ const onPictureFormEscKeyDown = (event) => {
 };
 
 const resetPictureFormDefaults = () => {
-  scaleControl.value = '55%'; // text
-  effectItemDefault.checked = true; // radio
-  hashtag.placeholder = '#ХэшТег'; // input
-  textDescription.placeholder = 'Ваш комментарий...'; // textarea
-  picturePreview.src = '';
+  effectItemDefault.checked = true;
+  hashtag.value = '';
+  textDescription.value = '';
+  pictureInput.value = '';
 };
 
 function onUploadPictureButtonClick() {
@@ -50,3 +47,5 @@ function onClosePictureFormButtonClick() {
 }
 
 uploadPictureButton.addEventListener('change', onUploadPictureButtonClick);
+
+export {onClosePictureFormButtonClick};
