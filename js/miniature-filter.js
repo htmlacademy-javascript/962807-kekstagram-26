@@ -25,7 +25,7 @@ const updateContent = debounce((data) => {
 
 const onRandomButtonClick = () => {
   toggleCurrentFilter(randomButton);
-  const data = shuffleArray(contentData.slice()).slice(0, DATA_MAX);
+  const data = shuffleArray(contentData).slice(0, DATA_MAX);
   updateContent(data);
 };
 
