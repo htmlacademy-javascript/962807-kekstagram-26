@@ -5,11 +5,13 @@ import {addEffectsHandler, removeEffectsHandler} from './upload-form-processing-
 const uploadPictureForm = document.querySelector('.img-upload__overlay');
 const uploadPictureButton = document.querySelector('#upload-file');
 const closePictureFormButton = document.querySelector('#upload-cancel');
+const picturePreview = document.querySelector('.img-upload__preview img');
 
 const effectItemDefault = document.querySelector('#effect-none');
 const hashtag = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const pictureInput = document.querySelector('.img-upload__input');
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
@@ -26,7 +28,21 @@ const resetPictureFormDefaults = () => {
   pictureInput.value = '';
 };
 
+const uploadPicture = () => {
+  const file = uploadPictureButton.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((it) => {
+    return fileName.endsWith(it);
+  });
+
+  if (matches) {
+    picturePreview.src = URL.createObjectURL(file);
+  }
+}
+
 function onUploadPictureButtonClick() {
+  uploadPicture();
   uploadPictureForm.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closePictureFormButton.addEventListener('click', onClosePictureFormButtonClick);
