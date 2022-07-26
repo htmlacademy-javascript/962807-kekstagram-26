@@ -37,10 +37,10 @@ const uploadPicture = () => {
 
   if (matches) {
     picturePreview.src = URL.createObjectURL(file);
-    return true;
   } else {
-    return showAlertOnError();
+    showAlertOnError();
   }
+  return matches;
 };
 
 function onUploadPictureButtonClick() {
