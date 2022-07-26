@@ -119,6 +119,11 @@ const onEffectElementClick = () => {
   updateSliderSettings(checkedEffect);
 };
 
+const resetFilterSettings = () => {
+  toggleEffect('none');
+  updateSliderSettings('none');
+};
+
 const applyEffectDepth = () => {
   const effectLevelCurrent = updateEffectLevel();
   const effectFilterCurrent = effectTypes.currentFilter;
@@ -137,6 +142,7 @@ const addEffectsHandler = () => {
 };
 
 const removeEffectsHandler = () => {
+  resetFilterSettings();
   effectElementsList.removeEventListener('click', onEffectElementClick);
   sliderElement.classList.add('visually-hidden');
 };
