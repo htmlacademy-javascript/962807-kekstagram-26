@@ -9,8 +9,7 @@ const closePictureFormButton = document.querySelector('#upload-cancel');
 const effectItemDefault = document.querySelector('#effect-none');
 const hashtag = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
-const picturePreview = document.querySelector('.img-upload__preview img');
-
+const pictureInput = document.querySelector('.img-upload__input');
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
@@ -21,10 +20,10 @@ const onPictureFormEscKeyDown = (event) => {
 };
 
 const resetPictureFormDefaults = () => {
-  effectItemDefault.checked = true; // radio
-  hashtag.value = ''; // input
-  textDescription.value = ''; // textarea
-  picturePreview.src = '';
+  effectItemDefault.checked = true;
+  hashtag.value = '';
+  textDescription.value = '';
+  pictureInput.value = '';
 };
 
 function onUploadPictureButtonClick() {
