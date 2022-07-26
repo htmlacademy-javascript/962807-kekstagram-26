@@ -1,4 +1,3 @@
-import { hidePictureForm, revealPictureForm } from './upload-form-view.js';
 import { isEscapeKey } from './util.js';
 
 const bodyElement = document.querySelector('body');
@@ -26,17 +25,15 @@ const onOutOfAlertElementClick = (event) => {
 };
 
 function onCloseButtonClick() {
-  const element = getAlertElement();
   removeAlertElement();
   bodyElement.removeEventListener('click', onOutOfAlertElementClick);
   bodyElement.removeEventListener('keydown', onAlertElementEscKeyDown);
-  if (element.matches('.error')) {revealPictureForm();}
 }
 
 const renderAlertElement = (template) => {
   const element = template.cloneNode(true);
   const closeButton = element.querySelector('button');
-  if (element.firstElementChild.matches('.error')) { hidePictureForm();}
+  element.firstElementChild.style.zIndex = 10;
   bodyElement.append(element);
   closeButton.addEventListener('click', onCloseButtonClick);
   bodyElement.addEventListener('click', onOutOfAlertElementClick);

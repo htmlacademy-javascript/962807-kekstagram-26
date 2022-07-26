@@ -31,8 +31,10 @@ const checkHashtagsDuplicate = (value) => {
 
 const checkHashtagsLength = (value) => stringToWords(value).every((hashtag) => hashtag.length <= MAX_HASHTAG_LENGTH);
 
-const checkHashtagsChars = (value) => stringToWords(value).every((hashtag) => HASHTAG_REGULAR.test(hashtag));
-
+const checkHashtagsChars = (value) => {
+  if (!value) {return true;}
+  return stringToWords(value).every((hashtag) => HASHTAG_REGULAR.test(hashtag));
+};
 
 // Добавляем настраиваемые валидаторы для хештегов
 pristine.addValidator(hashtagInput, checkHashtagsCount,
