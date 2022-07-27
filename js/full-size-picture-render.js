@@ -1,4 +1,5 @@
 import { setZoomDefault } from './upload-form-zoom-photo.js';
+const COMMENT_RENDER_COUNT = 5; //Количество (шаг) подгружаемых комментариев
 
 //Находим элементы для заполнения целевыми данными
 const fullPictureContainer = document.querySelector('.big-picture');
@@ -18,7 +19,6 @@ const commentMessage = commentElement.querySelector('.social__text');
 const fragment = document.createDocumentFragment();
 
 const preparedComments = []; //Кэш для рендеринга комментариев
-const COMMENT_RENDER_COUNT = 5; //Количество (шаг) подгружаемых комментариев
 
 
 //Разбивает исходный массив комментариев на подмассивы по количеству подгружаемых комментариев

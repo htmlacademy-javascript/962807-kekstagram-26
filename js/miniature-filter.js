@@ -2,13 +2,13 @@ import { contentData } from './network.js';
 import { renderContent, removeContent } from './miniature-render.js';
 import { shuffleArray, debounce } from './util.js';
 
+const DATA_MAX = 10;
+const RERENDER_DELAY = 500;
 const filterSection = document.querySelector('.img-filters');
 const filterForm = filterSection.querySelector('.img-filters__form');
 const defaultButton = filterForm.querySelector('#filter-default');
 const randomButton = filterForm.querySelector('#filter-random');
 const popularButton = filterForm.querySelector('#filter-discussed');
-const DATA_MAX = 10;
-const RERENDER_DELAY = 500;
 
 const toggleCurrentFilter = (element) => {
   const activeSelector = 'img-filters__button--active';
