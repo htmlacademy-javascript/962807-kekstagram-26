@@ -3,6 +3,7 @@ import {addZoomHandler, removeZoomHandler, setZoomDefault} from './upload-form-z
 import {addEffectsHandler, removeEffectsHandler} from './upload-form-processing-photo.js';
 import { showAlertOnError } from './upload-form-alerts.js';
 
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const uploadPictureForm = document.querySelector('.img-upload__overlay');
 const uploadPictureButton = document.querySelector('#upload-file');
 const closePictureFormButton = document.querySelector('#upload-cancel');
@@ -12,11 +13,11 @@ const effectItemDefault = document.querySelector('#effect-none');
 const hashtag = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const pictureInput = document.querySelector('.img-upload__input');
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 const onPictureFormEscKeyDown = (event) => {
   if (isEscapeKey(event)) {
-    if (document.activeElement === hashtag) {return;}
+    if (document.activeElement === hashtag ||
+      document.activeElement === textDescription) {return;}
     event.preventDefault();
     onClosePictureFormButtonClick();
   }

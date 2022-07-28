@@ -1,17 +1,20 @@
 import {isProperStringLength} from './util.js';
 
-const uploadPhotoForm = document.querySelector('#upload-select-image');
-const hashtagInput = document.querySelector('.text__hashtags');
-const descriptionInput = document.querySelector('.text__description');
 const MAX_STRING_LENGTH = 140;
 const MAX_HASHTAG_LENGTH = 20;
 const MAX_HASHTAGS_COUNT = 5;
 const HASHTAG_REGULAR = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+const uploadPhotoForm = document.querySelector('#upload-select-image');
+const hashtagInput = document.querySelector('.text__hashtags');
+const descriptionInput = document.querySelector('.text__description');
 
 const pristine = new Pristine(uploadPhotoForm, {
-  classTo: 'img-upload__text',
-  errorTextTag: 'span',
-  errorTextParent: 'img-upload__text',
+  classTo: 'img-upload__field-wrapper',
+  errorClass: 'form__item--invalid',
+  successClass: 'form__item--valid',
+  errorTextParent: 'img-upload__field-wrapper',
+  errorTextTag: 'p',
+  errorTextClass: 'form__error'
 });
 
 // Добавляем настраиваемый валидатор для комментария
