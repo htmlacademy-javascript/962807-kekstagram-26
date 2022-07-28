@@ -19,7 +19,7 @@ const onZoomButtonClick = (event) => {
   const isZoomOutButton = event.target.matches('.scale__control--smaller');
   const isZoomInButton = event.target.matches('.scale__control--bigger');
 
-  if (!(isZoomInButton || isZoomOutButton)) {return;}
+  if (!event.target.matches('button')) {return;}
   if ((isZoomOutButton && zoomCurrent === ZOOM_MIN) ||
   (isZoomInButton && zoomCurrent === ZOOM_MAX)) {return;}
 
